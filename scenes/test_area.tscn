@@ -1,6 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/crateWood.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/barrellBlack.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/barricadeWood.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/barricadeMetal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/treeGreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/oilSpill_Large.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500.5, 12.75 )
@@ -25,34 +31,60 @@ radius = 52.6973
 [node name="Tank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 514.667, 324.333 )
 rotation = -7.60059
-collision_mask = 6
 bodie = 6
 barrel = 3
 
-[node name="wall" type="StaticBody2D" parent="."]
-collision_layer = 4
-collision_mask = 9
+[node name="obstacles" type="Node" parent="."]
 
-[node name="wall" type="CollisionShape2D" parent="wall"]
+[node name="wall" type="StaticBody2D" parent="obstacles"]
+collision_layer = 4
+collision_mask = 27
+
+[node name="wall" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 524.5, 14.25 )
 shape = SubResource( 1 )
 
-[node name="wall2" type="CollisionShape2D" parent="wall"]
+[node name="wall2" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 11.6875, 300.125 )
 shape = SubResource( 2 )
 
-[node name="wall3" type="CollisionShape2D" parent="wall"]
+[node name="wall3" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 525.375, 584.625 )
 shape = SubResource( 3 )
 
-[node name="wall4" type="CollisionShape2D" parent="wall"]
+[node name="wall4" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 1012.5, 300.188 )
 shape = SubResource( 4 )
 
-[node name="circle" type="CollisionShape2D" parent="wall"]
+[node name="circle" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 918, 117 )
 shape = SubResource( 5 )
 
-[node name="circle2" type="CollisionShape2D" parent="wall"]
+[node name="circle2" type="CollisionShape2D" parent="obstacles/wall"]
 position = Vector2( 125, 477 )
 shape = SubResource( 6 )
+
+[node name="crateWood" parent="obstacles" instance=ExtResource( 2 )]
+position = Vector2( 727, 92 )
+collision_mask = 27
+
+[node name="barrellBlack" parent="obstacles" instance=ExtResource( 3 )]
+position = Vector2( 76, 222 )
+collision_mask = 27
+
+[node name="barricadeWood" parent="obstacles" instance=ExtResource( 4 )]
+position = Vector2( 158, 102 )
+collision_mask = 27
+
+[node name="barricadeMetal" parent="obstacles" instance=ExtResource( 5 )]
+position = Vector2( 441, 123 )
+collision_mask = 27
+
+[node name="treeGreen" parent="obstacles" instance=ExtResource( 6 )]
+position = Vector2( 290, 263 )
+
+[node name="oilSpill_Large" parent="obstacles" instance=ExtResource( 7 )]
+position = Vector2( 692, 338 )
+
+[connection signal="body_entered" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_entered"]
+[connection signal="body_exited" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_exited"]

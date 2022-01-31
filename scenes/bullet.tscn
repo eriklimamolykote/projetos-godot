@@ -15,7 +15,8 @@ radius = 8.0
 height = 0.0
 
 [sub_resource type="Gradient" id=5]
-colors = PoolColorArray( 1, 1, 1, 0.168627, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.010989, 0.175824, 0.186813, 0.208791, 0.868132, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.168627, 1, 1, 1, 0, 1, 1, 1, 0.0595278, 1, 1, 1, 0.0778278, 1, 1, 1, 0.0684228, 1, 1, 1, 0.0328429, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=6]
 gradient = SubResource( 5 )
@@ -92,7 +93,7 @@ tracks/1/keys = {
 
 [node name="bullet" type="Area2D" groups=["cannon_bullet"]]
 collision_layer = 8
-collision_mask = 6
+collision_mask = 22
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]

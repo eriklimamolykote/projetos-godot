@@ -52,6 +52,11 @@ func _physics_process(delta):
 	if Engine.editor_hint:
 		return
 	
+	var vel_mod = 1
+	
+	if get_tree().get_nodes_in_group(str(self) + "-oil").size() > 0:
+		vel_mod = .3
+	
 #	var dir_x = 0
 #	var dir_y = 0
 #
@@ -105,14 +110,14 @@ func _physics_process(delta):
 	
 	#print(accel)	
 	
-	var move = move_and_slide(Vector2( cos(rotation), sin(rotation) ) * accel)
+	var move = move_and_slide(Vector2( cos(rotation), sin(rotation) ) * accel * vel_mod)
 	
-	travel += move.length()
+	travel += move.length() * delta
 	
-	if travel > 3000:
+	if travel > $Sprite.texture.get_size().y:
 		travel = 0
 		var track = pre_track.instance()
-		track.global_position = global_position
+		track.global_position = global_position - Vector2( cos(rotation), sin(rotation) ).normalized() * 5
 		track.rotation = rotation
 		track.z_index = z_index - 1
 		$"../".add_child(track)
