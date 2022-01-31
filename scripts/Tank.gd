@@ -3,8 +3,15 @@ extends KinematicBody2D
 
 onready var BULLET_TANK_GROUP = "bullet-" + str(self)
 
-var speed = 100
+# PI = 180 graus
+const ROT_VEL = PI / 2
+
+const MAX_SPEED = 100
 var pre_bullet = preload("res://scenes/bullet.tscn")
+var pre_track = preload("res://scenes/track.tscn")
+var accel = 0
+
+var travel = 0
 
 export(int, "bigRed", "blue", "dark", "darLarge", "green", "huge", "red", "sand") var bodie = 0 setget set_bodie
 export(int, "tankBlue", "tankDark", "tankGreen", "tankRed", "tankSand", "specialBarrel2", "specialBarrel2_outline", "specialBarrel5_outline") var barrel = 4 setget set_barrel
@@ -40,40 +47,77 @@ func _draw():
 	$barrel/sprite.texture = load(barrels[barrel])
 	
 
-func _process(delta):
+func _physics_process(delta):
 	
 	if Engine.editor_hint:
 		return
 	
-	var dir_x = 0
-	var dir_y = 0
-	
-	if Input.is_action_pressed("ui_right"):
-		dir_x += 1
-		
-	if Input.is_action_pressed("ui_left"):
-		dir_x -= 1	
-		
-	if Input.is_action_pressed("ui_up"):
-		dir_y -= 1
-		
-	if Input.is_action_pressed("ui_down"):
-		dir_y += 1
-		
+#	var dir_x = 0
+#	var dir_y = 0
+#
+#	if Input.is_action_pressed("ui_right"):
+#		dir_x += 1
+#
+#	if Input.is_action_pressed("ui_left"):
+#		dir_x -= 1	
+#
+#	if Input.is_action_pressed("ui_up"):
+#		dir_y -= 1
+#
+#	if Input.is_action_pressed("ui_down"):
+#		dir_y += 1
+#
 	if Input.is_action_just_pressed("ui_shoot"):
 		if get_tree().get_nodes_in_group(BULLET_TANK_GROUP).size() < 6:
 			var bullet = pre_bullet.instance()
 			bullet.global_position = $barrel/muzzle.global_position # coloca a bala na posição da ponta do canhão
-			bullet.dir = Vector2(cos(rotation), sin(rotation) ).normalized()
+			bullet.dir = Vector2(cos($barrel.global_rotation), sin($barrel.global_rotation) ).normalized()
 			bullet.add_to_group(BULLET_TANK_GROUP)
 			$"../".add_child(bullet)
 			$barrel/anim.play("fire")
 			#get_parent().add_child(bullet)
-			
-			
-	look_at(get_global_mouse_position())		
-					
-	move_and_slide( Vector2(dir_x, dir_y) * speed )	
+#
+#	look_at(get_global_mouse_position())		
+#
+#	move_and_slide( Vector2(dir_x, dir_y) * speed )	
+
+	var rot = 0
+	var dir = 0
+
+	if Input.is_action_pressed("ui_right"):
+		rot += 1
+		
+	if Input.is_action_pressed("ui_left"):
+		rot -= 1
+		
+	if Input.is_action_pressed("ui_up"):
+		dir +=1
+		
+	if Input.is_action_pressed("ui_down"):
+		dir -= 1 		
+		
+	rotate(ROT_VEL * rot * delta)
+	
+	#if dir != 0:
+	accel = lerp(accel, MAX_SPEED * dir, .03)
+	#else:
+		#accel = lerp(accel, 0, .05)	
+	
+	#print(accel)	
+	
+	var move = move_and_slide(Vector2( cos(rotation), sin(rotation) ) * accel)
+	
+	travel += move.length()
+	
+	if travel > 3000:
+		travel = 0
+		var track = pre_track.instance()
+		track.global_position = global_position
+		track.rotation = rotation
+		track.z_index = z_index - 1
+		$"../".add_child(track)
+	
+	$barrel.look_at(get_global_mouse_position())		
 	
 func set_bodie(val):
 	bodie = val
