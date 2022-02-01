@@ -9,16 +9,16 @@
 [ext_resource path="res://scenes/oilSpill_Large.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 500.5, 12.75 )
+extents = Vector2( 516, 21 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 12.3125, 298.875 )
+extents = Vector2( 16, 394 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 499.625, 12.625 )
+extents = Vector2( 516, 24 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 12.5, 272.812 )
+extents = Vector2( 20, 394 )
 
 [sub_resource type="CircleShape2D" id=5]
 radius = 52.6973
@@ -41,19 +41,19 @@ collision_layer = 4
 collision_mask = 27
 
 [node name="wall" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 524.5, 14.25 )
+position = Vector2( 516, -133 )
 shape = SubResource( 1 )
 
 [node name="wall2" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 11.6875, 300.125 )
+position = Vector2( 14, 284 )
 shape = SubResource( 2 )
 
 [node name="wall3" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 525.375, 584.625 )
+position = Vector2( 514, 704 )
 shape = SubResource( 3 )
 
 [node name="wall4" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 1012.5, 300.188 )
+position = Vector2( 1012, 284 )
 shape = SubResource( 4 )
 
 [node name="circle" type="CollisionShape2D" parent="obstacles/wall"]
