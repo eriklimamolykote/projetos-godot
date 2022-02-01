@@ -9,6 +9,7 @@ const dead_zone = 0.02
 const MAX_SPEED = 100
 var pre_bullet = preload("res://scenes/bullet.tscn")
 var pre_track = preload("res://scenes/track.tscn")
+var pre_mg_bullet = preload("res://scenes/mg_bullet.tscn")
 var accel = 0
 var can_mouse_look = false
 var travel = 0
@@ -90,6 +91,13 @@ func _physics_process(delta):
 		$timer_reload.start()
 		$barrel/barrel_anim.play("shoot")
 		#get_parent().add_child(bullet)
+		
+	if Input.is_action_just_pressed("machinegun"):
+		shoot_mg()
+		$timer_mg.start()	
+		
+	if Input.is_action_just_released("machinegun"):
+		$timer_mg.stop()	
 #
 #	look_at(get_global_mouse_position())		
 #
@@ -169,8 +177,17 @@ func set_barrel(val):
 	if Engine.editor_hint:
 		update()		
 
-
-
 func _on_timer_reload_timeout():
 	loaded = true
 	$barrel/sight.update()
+
+func shoot_mg():
+	var mg = pre_mg_bullet.instance()
+	mg.global_position = $mg_muzzle.global_position
+	mg.global_rotation = global_rotation
+	mg.dir = Vector2(cos(global_rotation), sin(global_rotation)).normalized()
+	get_parent().add_child(mg)
+
+
+func _on_timer_mg_timeout():
+	shoot_mg()

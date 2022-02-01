@@ -5,7 +5,7 @@ var max_dist = 250
 var vel = 400
 var dir = Vector2(0, -1) setget set_dir
 onready var init_pos = global_position
-
+var damage = 10
 var live = true
 
 func _ready():
@@ -42,3 +42,9 @@ func autodestroy():
 	#monitorable = false
 	yield($anim_self_destruction, "animation_finished")
 	queue_free()		
+
+
+func _on_bullet_area_entered(area):
+	if area.has_method("hit"):
+		area.hit(damage, self)
+		autodestroy()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://sprites/tankSand_barrel1_outline.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tank.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://sprites/shotOrange.png" type="Texture" id=5]
 [ext_resource path="res://sprites/shotRed.png" type="Texture" id=6]
 [ext_resource path="res://scripts/sight.gd" type="Script" id=7]
+[ext_resource path="res://sprites/specialBarrel4_outline.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -128,6 +129,19 @@ polygon = PoolVector2Array( -13, -18, -19, -12, -19, 12, -13, 18, 13, 18, 19, 12
 rotation = 1.5708
 texture = ExtResource( 3 )
 
+[node name="mg" type="Sprite" parent="."]
+position = Vector2( 20.377, 15 )
+rotation = -1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 8 )
+
+[node name="mg_muzzle" type="Position2D" parent="."]
+position = Vector2( 41, 16 )
+
+[node name="timer_mg" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+
 [node name="barrel" type="Node2D" parent="."]
 
 [node name="sprite" type="Sprite" parent="barrel"]
@@ -151,7 +165,7 @@ anims/RESET = SubResource( 1 )
 anims/fire = SubResource( 2 )
 
 [node name="sight" type="Node2D" parent="barrel"]
-position = Vector2( 125, 0 )
+position = Vector2( 150, 0 )
 script = ExtResource( 7 )
 
 [node name="barrel_anim" type="AnimationPlayer" parent="barrel"]
@@ -163,4 +177,5 @@ process_mode = 0
 wait_time = 1.5
 one_shot = true
 
+[connection signal="timeout" from="timer_mg" to="." method="_on_timer_mg_timeout"]
 [connection signal="timeout" from="timer_reload" to="." method="_on_timer_reload_timeout"]

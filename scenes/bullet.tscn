@@ -10,9 +10,8 @@
 [ext_resource path="res://sprites/explosionSmoke3.png" type="Texture" id=8]
 [ext_resource path="res://sprites/explosionSmoke1.png" type="Texture" id=9]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 8.0
-height = 0.0
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 3.99999, 5.99999 )
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.010989, 0.175824, 0.186813, 0.208791, 0.868132, 1 )
@@ -93,7 +92,7 @@ tracks/1/keys = {
 
 [node name="bullet" type="Area2D" groups=["cannon_bullet"]]
 collision_layer = 8
-collision_mask = 22
+collision_mask = 54
 script = ExtResource( 2 )
 
 [node name="sprite" type="Sprite" parent="."]
@@ -101,8 +100,9 @@ rotation = 1.5708
 texture = ExtResource( 1 )
 
 [node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 1.00001, -3.04738e-05 )
 rotation = 1.5708
-shape = SubResource( 1 )
+shape = SubResource( 9 )
 
 [node name="notifier" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 4.17233e-07, 4.17233e-07 )
@@ -125,5 +125,6 @@ texture = ExtResource( 6 )
 anims/RESET = SubResource( 7 )
 anims/explode = SubResource( 8 )
 
+[connection signal="area_entered" from="." to="." method="_on_bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
 [connection signal="screen_exited" from="notifier" to="." method="_on_notifier_screen_exited"]
