@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/crateWood.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/barricadeMetal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/treeGreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/oilSpill_Large.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/test_area.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 516, 21 )
@@ -27,6 +28,7 @@ radius = 52.6973
 radius = 52.6973
 
 [node name="test_area" type="Node"]
+script = ExtResource( 8 )
 
 [node name="Tank" parent="." instance=ExtResource( 1 )]
 position = Vector2( 514.667, 324.333 )
