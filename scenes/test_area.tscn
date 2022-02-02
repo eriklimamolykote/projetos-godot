@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/crateWood.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/treeGreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/oilSpill_Large.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/test_area.gd" type="Script" id=8]
+[ext_resource path="res://resources/tileset.tres" type="TileSet" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 516, 21 )
@@ -20,12 +21,6 @@ extents = Vector2( 516, 24 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 20, 394 )
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 52.6973
-
-[sub_resource type="CircleShape2D" id=6]
-radius = 52.6973
 
 [node name="test_area" type="Node"]
 script = ExtResource( 8 )
@@ -58,14 +53,6 @@ shape = SubResource( 3 )
 position = Vector2( 1012, 284 )
 shape = SubResource( 4 )
 
-[node name="circle" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 918, 117 )
-shape = SubResource( 5 )
-
-[node name="circle2" type="CollisionShape2D" parent="obstacles/wall"]
-position = Vector2( 125, 477 )
-shape = SubResource( 6 )
-
 [node name="crateWood" parent="obstacles" instance=ExtResource( 2 )]
 position = Vector2( 727, 92 )
 collision_mask = 27
@@ -87,6 +74,13 @@ position = Vector2( 290, 263 )
 
 [node name="oilSpill_Large" parent="obstacles" instance=ExtResource( 7 )]
 position = Vector2( 692, 338 )
+
+[node name="ground" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource( 9 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( -65536, 24, 0, -65535, 27, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, 0, 0, 0, 1, 2, 0, 2, 5, 0, 3, 33, 0, 4, 33, 0, 5, 33, 0, 6, 33, 0, 7, 33, 0, 65536, 30, 0, 65537, 33, 0, 65538, 7, 0, 65539, 33, 0, 65540, 33, 0, 65541, 33, 0, 65542, 33, 0, 65543, 33, 0, 131072, 2, 0, 131073, 2, 0, 131074, 0, 0, 131075, 5, 0, 131076, 33, 0, 131077, 33, 0, 131078, 33, 0, 131079, 33, 0, 196608, 24, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 27, 0, 262144, 30, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 21, 0, 327680, 24, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 27, 0 )
 
 [connection signal="body_entered" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_entered"]
 [connection signal="body_exited" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_exited"]

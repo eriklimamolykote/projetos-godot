@@ -1,0 +1,291 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/terrainTiles_default.png" type="Texture" id=1]
+
+[node name="tileset" type="Node2D"]
+
+[node name="tile" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 128, 128 )
+
+[node name="tile5" type="Sprite" parent="."]
+position = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 0, 128, 128 )
+
+[node name="tile9" type="Sprite" parent="."]
+position = Vector2( 128, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 0, 128, 128 )
+
+[node name="tile6" type="Sprite" parent="."]
+position = Vector2( 128, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 128, 128, 128 )
+
+[node name="tile10" type="Sprite" parent="."]
+position = Vector2( 256, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 256, 0, 128, 128 )
+
+[node name="tile14" type="Sprite" parent="."]
+position = Vector2( 384, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 384, 0, 128, 128 )
+
+[node name="tile18" type="Sprite" parent="."]
+position = Vector2( 512, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 512, 0, 128, 128 )
+
+[node name="tile22" type="Sprite" parent="."]
+position = Vector2( 640, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 640, 0, 128, 128 )
+
+[node name="tile26" type="Sprite" parent="."]
+position = Vector2( 768, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 768, 0, 128, 128 )
+
+[node name="tile30" type="Sprite" parent="."]
+position = Vector2( 896, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 896, 0, 128, 128 )
+
+[node name="tile34" type="Sprite" parent="."]
+position = Vector2( 1024, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1024, 0, 128, 128 )
+
+[node name="tile38" type="Sprite" parent="."]
+position = Vector2( 1152, 0 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1152, 0, 128, 128 )
+
+[node name="tile39" type="Sprite" parent="."]
+position = Vector2( 1152, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1152, 128, 128, 128 )
+
+[node name="tile40" type="Sprite" parent="."]
+position = Vector2( 1152, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1152, 256, 128, 128 )
+
+[node name="tile41" type="Sprite" parent="."]
+position = Vector2( 1152, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1152, 384, 128, 128 )
+
+[node name="tile35" type="Sprite" parent="."]
+position = Vector2( 1024, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1024, 128, 128, 128 )
+
+[node name="tile36" type="Sprite" parent="."]
+position = Vector2( 1024, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1024, 256, 128, 128 )
+
+[node name="tile37" type="Sprite" parent="."]
+position = Vector2( 1024, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 1024, 384, 128, 128 )
+
+[node name="tile31" type="Sprite" parent="."]
+position = Vector2( 896, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 896, 128, 128, 128 )
+
+[node name="tile32" type="Sprite" parent="."]
+position = Vector2( 896, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 896, 256, 128, 128 )
+
+[node name="tile33" type="Sprite" parent="."]
+position = Vector2( 896, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 896, 384, 128, 128 )
+
+[node name="tile27" type="Sprite" parent="."]
+position = Vector2( 768, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 768, 128, 128, 128 )
+
+[node name="tile28" type="Sprite" parent="."]
+position = Vector2( 768, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 768, 256, 128, 128 )
+
+[node name="tile29" type="Sprite" parent="."]
+position = Vector2( 768, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 768, 384, 128, 128 )
+
+[node name="tile23" type="Sprite" parent="."]
+position = Vector2( 640, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 640, 128, 128, 128 )
+
+[node name="tile24" type="Sprite" parent="."]
+position = Vector2( 640, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 640, 256, 128, 128 )
+
+[node name="tile25" type="Sprite" parent="."]
+position = Vector2( 640, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 640, 384, 128, 128 )
+
+[node name="tile19" type="Sprite" parent="."]
+position = Vector2( 512, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 512, 128, 128, 128 )
+
+[node name="tile20" type="Sprite" parent="."]
+position = Vector2( 512, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 512, 256, 128, 128 )
+
+[node name="tile21" type="Sprite" parent="."]
+position = Vector2( 512, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 512, 384, 128, 128 )
+
+[node name="tile15" type="Sprite" parent="."]
+position = Vector2( 384, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 384, 128, 128, 128 )
+
+[node name="tile16" type="Sprite" parent="."]
+position = Vector2( 384, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 384, 256, 128, 128 )
+
+[node name="tile17" type="Sprite" parent="."]
+position = Vector2( 384, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 384, 384, 128, 128 )
+
+[node name="tile11" type="Sprite" parent="."]
+position = Vector2( 256, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 256, 128, 128, 128 )
+
+[node name="tile12" type="Sprite" parent="."]
+position = Vector2( 256, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 256, 256, 128, 128 )
+
+[node name="tile13" type="Sprite" parent="."]
+position = Vector2( 256, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 256, 384, 128, 128 )
+
+[node name="tile7" type="Sprite" parent="."]
+position = Vector2( 128, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 256, 128, 128 )
+
+[node name="tile8" type="Sprite" parent="."]
+position = Vector2( 128, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 128, 384, 128, 128 )
+
+[node name="tile2" type="Sprite" parent="."]
+position = Vector2( 0, 128 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 128, 128, 128 )
+
+[node name="tile3" type="Sprite" parent="."]
+position = Vector2( 0, 256 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 256, 128, 128 )
+
+[node name="tile4" type="Sprite" parent="."]
+position = Vector2( 0, 384 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 384, 128, 128 )
