@@ -29,19 +29,18 @@ extents = Vector2( 20, 576 )
 radius = 23.0217
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 201.301
+radius = 266.391
 
 [node name="test_area" type="Node"]
 script = ExtResource( 8 )
 
 [node name="Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 961, 873 )
+position = Vector2( 957, 325 )
 rotation = -7.60059
 bodie = 6
 barrel = 3
 
 [node name="camera" type="Camera2D" parent="Tank"]
-current = true
 smoothing_enabled = true
 drag_margin_left = 0.3
 drag_margin_top = 0.3
@@ -101,7 +100,8 @@ format = 1
 tile_data = PoolIntArray( -65537, 0, 0, -131072, 1, 0, -131071, 0, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -131067, 1, 0, -131066, 1, 0, -131065, 1, 0, -131064, 36, 0, -131063, 32, 0, -131062, 34, 0, -131061, 22, 0, -131060, 22, 0, -131059, 22, 0, -131058, 22, 0, -131057, 29, 0, -1, 0, 0, -65536, 24, 0, -65535, 27, 0, -65534, 1, 0, -65533, 1, 0, -65532, 1, 0, -65531, 1, 0, -65530, 1, 0, -65529, 1, 0, -65528, 26, 0, -65527, 35, 0, -65526, 34, 0, -65525, 35, 0, -65524, 35, 0, -65523, 35, 0, -65522, 35, 0, -65521, 41, 0, 65535, 0, 0, 0, 0, 0, 1, 2, 0, 2, 5, 0, 3, 33, 0, 4, 33, 0, 5, 33, 0, 6, 33, 0, 7, 33, 0, 8, 13, 0, 9, 28, 0, 10, 39, 0, 11, 31, 0, 12, 35, 0, 13, 35, 0, 14, 35, 0, 15, 41, 0, 131071, 0, 0, 65536, 30, 0, 65537, 7, 0, 65538, 7, 0, 65539, 33, 0, 65540, 33, 0, 65541, 33, 0, 65542, 33, 0, 65543, 33, 0, 65544, 13, 0, 65545, 28, 0, 65546, 39, 0, 65547, 31, 0, 65548, 35, 0, 65549, 35, 0, 65550, 35, 0, 65551, 41, 0, 196607, 0, 0, 131072, 2, 0, 131073, 0, 0, 131074, 0, 0, 131075, 24, 0, 131076, 7, 0, 131077, 1, 0, 131078, 7, 0, 131079, 7, 0, 131080, 13, 0, 131081, 28, 0, 131082, 39, 0, 131083, 31, 0, 131084, 35, 0, 131085, 35, 0, 131086, 35, 0, 131087, 41, 0, 262143, 0, 0, 196608, 24, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0, 196615, 27, 0, 196616, 32, 0, 196617, 28, 0, 196618, 39, 0, 196619, 31, 0, 196620, 35, 0, 196621, 35, 0, 196622, 35, 0, 196623, 41, 0, 327679, 0, 0, 262144, 30, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 21, 0, 262152, 26, 0, 262153, 28, 0, 262154, 39, 0, 262155, 31, 0, 262156, 35, 0, 262157, 35, 0, 262158, 35, 0, 262159, 41, 0, 393215, 0, 0, 327680, 24, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 4, 0, 327686, 4, 0, 327687, 27, 0, 327688, 32, 0, 327689, 23, 0, 327690, 39, 0, 327691, 31, 0, 327692, 35, 0, 327693, 35, 0, 327694, 35, 0, 327695, 41, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 1, 0, 393224, 36, 0, 393225, 39, 0, 393226, 39, 0, 393227, 26, 0, 393228, 25, 0, 393229, 25, 0, 393230, 25, 0, 393231, 23, 0 )
 
 [node name="turret_01" type="StaticBody2D" parent="."]
-position = Vector2( 574, 198 )
+position = Vector2( 698, 190 )
+rotation = 1.5708
 collision_layer = 0
 script = ExtResource( 12 )
 __meta__ = {
@@ -115,8 +115,8 @@ texture = ExtResource( 10 )
 polygon = PoolVector2Array( -23, -18, -23, 8, -14, 18, 14, 18, 23, 9, 23, -18 )
 
 [node name="cannon" type="Area2D" parent="turret_01"]
-collision_layer = 2
-collision_mask = 0
+rotation = -1.5708
+collision_layer = 0
 
 [node name="sprite" type="Sprite" parent="turret_01/cannon"]
 texture = ExtResource( 11 )
@@ -126,11 +126,17 @@ offset = Vector2( 0, -11 )
 shape = SubResource( 5 )
 
 [node name="sensor" type="Area2D" parent="turret_01"]
+collision_layer = 0
 
 [node name="shape" type="CollisionShape2D" parent="turret_01/sensor"]
 shape = SubResource( 6 )
+
+[node name="shoot_timer" type="Timer" parent="turret_01"]
+wait_time = 0.3
+autostart = true
 
 [connection signal="body_entered" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_entered"]
 [connection signal="body_exited" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_exited"]
 [connection signal="body_entered" from="turret_01/sensor" to="turret_01" method="_on_sensor_body_entered"]
 [connection signal="body_exited" from="turret_01/sensor" to="turret_01" method="_on_sensor_body_exited"]
+[connection signal="timeout" from="turret_01/shoot_timer" to="turret_01" method="_on_shoot_timer_timeout"]
