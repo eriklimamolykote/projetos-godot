@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/tankSand_barrel1_outline.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tank.gd" type="Script" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://sprites/shotRed.png" type="Texture" id=6]
 [ext_resource path="res://scripts/sight.gd" type="Script" id=7]
 [ext_resource path="res://sprites/specialBarrel4_outline.png" type="Texture" id=8]
+[ext_resource path="res://samples/tank_cannon.wav" type="AudioStream" id=9]
+[ext_resource path="res://samples/disparo_hmg_tank.wav" type="AudioStream" id=10]
+[ext_resource path="res://samples/reload.wav" type="AudioStream" id=11]
+[ext_resource path="res://samples/tank_motor.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -117,6 +121,29 @@ tracks/0/keys = {
 "values": [ Vector2( -18, 0 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="GDScript" id=5]
+resource_name = "tank_samples"
+script/source = "extends Node
+
+func _ready():
+	$\"../\".connect(\"cannon_shooted\", self, \"on_tank_cannon_shooted\")
+	$\"../\".connect(\"hmg_shooted\", self, \"on_tank_hmg_shooted\")
+	$motor.play()
+	pass
+
+func on_tank_cannon_shooted():
+	$cannon.play()
+	yield($cannon, \"finished\")
+	$reload.play()
+	
+func on_tank_hmg_shooted():
+	$hmg.play()	
+
+func _physics_process(delta):
+	var pitch = abs($\"../\".accel / $\"../\".MAX_SPEED)
+	$motor.pitch_scale = pitch + .7
+"
+
 [node name="Tank" type="KinematicBody2D"]
 rotation = -2.30902
 collision_mask = 22
@@ -176,6 +203,25 @@ anims/shoot = SubResource( 4 )
 process_mode = 0
 wait_time = 1.5
 one_shot = true
+
+[node name="samples" type="Node" parent="."]
+script = SubResource( 5 )
+
+[node name="cannon" type="AudioStreamPlayer" parent="samples"]
+stream = ExtResource( 9 )
+bus = "tank"
+
+[node name="hmg" type="AudioStreamPlayer" parent="samples"]
+stream = ExtResource( 10 )
+bus = "tank"
+
+[node name="reload" type="AudioStreamPlayer" parent="samples"]
+stream = ExtResource( 11 )
+bus = "tank"
+
+[node name="motor" type="AudioStreamPlayer" parent="samples"]
+stream = ExtResource( 12 )
+bus = "tank"
 
 [connection signal="timeout" from="timer_mg" to="." method="_on_timer_mg_timeout"]
 [connection signal="timeout" from="timer_reload" to="." method="_on_timer_reload_timeout"]

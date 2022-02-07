@@ -7,10 +7,7 @@ func _ready():
 	$area_obstacle.connect("destroid", self, "on_area_destroid")
 	
 func on_area_hitted(damage, health, node):
-	if damage > 5:
-		$anim.play("bg_hit")
-	else:
-		$anim.play("small_hit")	
+	$anim.play("bg_hit")	
 
 func on_area_destroid():
 	var fragments = PRE_FRAGMENTS.instance()

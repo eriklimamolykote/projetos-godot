@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://sprites/crateWood.png" type="Texture" id=1]
 [ext_resource path="res://scripts/destructable.gd" type="Script" id=2]
 [ext_resource path="res://scripts/crateWood.gd" type="Script" id=3]
+[ext_resource path="res://samples/tank_explosion.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 16, 14 )
@@ -110,3 +111,7 @@ playback_speed = 4.0
 anims/RESET = SubResource( 9 )
 anims/bg_hit = SubResource( 10 )
 anims/small_hit = SubResource( 11 )
+
+[node name="wood_explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "fx"

@@ -15,6 +15,9 @@ var can_mouse_look = false
 var travel = 0
 var loaded = true
 
+signal cannon_shooted
+signal hmg_shooted
+
 export(int, "bigRed", "blue", "dark", "darLarge", "green", "huge", "red", "sand") var bodie = 0 setget set_bodie
 export(int, "tankBlue", "tankDark", "tankGreen", "tankRed", "tankSand", "specialBarrel2", "specialBarrel2_outline", "specialBarrel5_outline") var barrel = 4 setget set_barrel
 
@@ -91,10 +94,11 @@ func _physics_process(delta):
 		$timer_reload.start()
 		$barrel/barrel_anim.play("shoot")
 		#get_parent().add_child(bullet)
+		emit_signal("cannon_shooted")
 		
 	if Input.is_action_just_pressed("machinegun"):
 		shoot_mg()
-		$timer_mg.start()	
+		$timer_mg.start()
 		
 	if Input.is_action_just_released("machinegun"):
 		$timer_mg.stop()	
@@ -175,8 +179,8 @@ func set_bodie(val):
 func set_barrel(val):
 	barrel = val
 	if Engine.editor_hint:
-		update()		
-
+		update()
+		
 func _on_timer_reload_timeout():
 	loaded = true
 	$barrel/sight.update()
@@ -187,6 +191,7 @@ func shoot_mg():
 	mg.global_rotation = global_rotation
 	mg.dir = Vector2(cos(global_rotation), sin(global_rotation)).normalized()
 	get_parent().add_child(mg)
+	emit_signal("hmg_shooted")
 
 
 func _on_timer_mg_timeout():
