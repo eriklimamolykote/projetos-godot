@@ -12,7 +12,7 @@ func _physics_process(delta):
 		autodestroy()
 		
 func _on_machinegunBullet_body_entered(body):
-	queue_free()
+	autodestroy()
 
 func _on_machinegunBullet_area_entered(area):
 	if area.has_method("hit"):

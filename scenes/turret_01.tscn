@@ -265,7 +265,7 @@ tracks/3/keys = {
 "values": [ false, true ]
 }
 
-[node name="turret_01" type="StaticBody2D"]
+[node name="turret_01" type="StaticBody2D" groups=["radar_entity"]]
 position = Vector2( 232, 260 )
 rotation = 1.5708
 collision_layer = 0

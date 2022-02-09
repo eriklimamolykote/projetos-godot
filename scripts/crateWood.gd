@@ -14,4 +14,5 @@ func on_area_destroid():
 	fragments.global_position = global_position
 	fragments.scale = scale
 	get_parent().add_child(fragments)
+	GAME.add_score(50)
 	queue_free()
