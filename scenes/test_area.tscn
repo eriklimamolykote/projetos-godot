@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/crateWood.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scripts/camera.gd" type="Script" id=11]
 [ext_resource path="res://resources/fonts/PressStart2P.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://scripts/hud.gd" type="Script" id=13]
+[ext_resource path="res://scenes/home_missile.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1088.5, 21 )
@@ -42,7 +43,7 @@ font_data = ExtResource( 12 )
 script = ExtResource( 8 )
 
 [node name="Tank" parent="." instance=ExtResource( 1 )]
-position = Vector2( 957, 325 )
+position = Vector2( 708, 195 )
 rotation = -7.60059
 bodie = 6
 barrel = 3
@@ -108,6 +109,7 @@ position = Vector2( 128, -12 )
 
 [node name="turret_01" parent="turrets" instance=ExtResource( 10 )]
 position = Vector2( 195, 453 )
+type = 1
 
 [node name="hud" type="CanvasLayer" parent="."]
 script = ExtResource( 13 )
@@ -156,6 +158,9 @@ __meta__ = {
 }
 
 [node name="radar_circle" parent="hud" instance=ExtResource( 3 )]
+
+[node name="home_missile" parent="." instance=ExtResource( 14 )]
+position = Vector2( 588, 450 )
 
 [connection signal="body_entered" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_entered"]
 [connection signal="body_exited" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_exited"]

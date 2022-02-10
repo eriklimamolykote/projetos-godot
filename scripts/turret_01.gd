@@ -2,10 +2,12 @@ tool
 extends StaticBody2D
 
 var bodies = []
-var rot_vel = PI * .5 #PI = 3,1415
+
 export(float, 0, 360) var start_rot = 0.0 setget set_start_rot
 
 export(float, 100, 1000) var sensor_radius = 100 setget set_sensor_radius
+
+export(int, 'HMG', 'HOME') var type = 0 setget set_type
 
 var first_draw = true
 export var life = 100
@@ -18,7 +20,7 @@ signal player_Exited(n)
 
 var dead = false
 
-onready var cannon = $cannon
+onready var cannon = $HMG
 
 func _ready():
 	pass
@@ -30,7 +32,7 @@ func _process(delta):
 	if bodies.size():
 		var angle = cannon.get_angle_to(bodies[0].global_position)
 		if abs(angle) > .01:
-			cannon.rotation += rot_vel * delta *  sign(angle)
+			cannon.rotation += cannon.rot_vel * delta *  sign(angle)
 		if cannon.get_target() != null && cannon.get_target() != bodies[0]: 
 			var oldBody = bodies[0]
 			var newBodyIndex = bodies.find(cannon.get_target())
@@ -40,13 +42,31 @@ func _process(delta):
 func _draw():
 	if dead:
 		return
+		
+	if Engine.editor_hint:
+		$HMG.visible = type == 0
+		$HOME.visible = type == 1
+		
+	if type == 0:
+		cannon = $HMG	
+	elif type == 1:
+		cannon = $HOME	
+		
 	if first_draw:
+		$HMG.visible = type == 0
+		$HOME.visible = type == 1
 		cannon.rotation = deg2rad(start_rot)
 		var new_shape = CircleShape2D.new()
 		new_shape.radius = sensor_radius
 		$sensor/shape.shape = new_shape
 		if !Engine.editor_hint:
 			first_draw = false
+			
+			if type == 0:
+				$HOME.queue_free()
+			elif type == 1:
+				$HMG.queue_free()
+					
 	if bodies.size():
 		draw_circle(Vector2(), $sensor/shape.shape.radius, Color(1, 0, 0, .1))	
 	draw_circle_arc(Vector2(), $sensor/shape.shape.radius, 0, 360, Color(1, 0, 0, .5))
@@ -107,3 +127,8 @@ func _on_weak_spot_damage(damage, node):
 		get_tree().call_group("camera", "shake", 5, 1)
 		game.add_score(250)
 		remove_from_group("radar_entity")
+		
+func set_type(val):
+	type = val
+	if Engine.editor_hint:		
+		update()

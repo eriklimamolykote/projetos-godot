@@ -2,4 +2,4 @@ extends Node
 
 func _ready():
 	randomize()
-	pass
+	$home_missile.target = $Tank
