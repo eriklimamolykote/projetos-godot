@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/crateWood.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scripts/radar_square.gd" type="Script" id=3]
+[ext_resource path="res://scenes/radar_circle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/barricadeWood.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/barricadeMetal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/treeGreen.tscn" type="PackedScene" id=6]
@@ -25,6 +25,14 @@ extents = Vector2( 1087, 24 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 20, 576 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 25
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 25
+font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 25
@@ -104,6 +112,33 @@ position = Vector2( 195, 453 )
 [node name="hud" type="CanvasLayer" parent="."]
 script = ExtResource( 13 )
 
+[node name="credits_label" type="Label" parent="hud"]
+margin_top = 574.0
+margin_right = 200.0
+margin_bottom = 599.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.85098, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.85098, 1, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "CREDITS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="radar_label" type="Label" parent="hud"]
+margin_left = 860.0
+margin_top = 441.0
+margin_right = 985.0
+margin_bottom = 466.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.85098, 1, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.85098, 1, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "RADAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="score" type="Label" parent="hud"]
 margin_left = -75.0
 margin_top = -20.0
@@ -120,21 +155,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="radar_square" type="ColorRect" parent="hud"]
-margin_left = 818.0
-margin_top = 468.0
-margin_right = 1023.0
-margin_bottom = 600.0
-color = Color( 0.952941, 0.423529, 0.423529, 0.466667 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-area_size = Vector2( 2176, 1152 )
-
-[node name="timer_update" type="Timer" parent="hud/radar_square"]
-wait_time = 0.33
+[node name="radar_circle" parent="hud" instance=ExtResource( 3 )]
 
 [connection signal="body_entered" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_entered"]
 [connection signal="body_exited" from="obstacles/oilSpill_Large" to="obstacles/oilSpill_Large" method="_on_oilSpill_Large_body_exited"]
-[connection signal="timeout" from="hud/radar_square/timer_update" to="hud/radar_square" method="_on_timer_update_timeout"]

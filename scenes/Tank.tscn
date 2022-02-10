@@ -144,7 +144,7 @@ func _physics_process(delta):
 	$motor.pitch_scale = pitch + .7
 "
 
-[node name="Tank" type="KinematicBody2D"]
+[node name="Tank" type="KinematicBody2D" groups=["player"]]
 rotation = -2.30902
 collision_mask = 22
 script = ExtResource( 2 )
