@@ -6,6 +6,8 @@ var damage = 1
 
 onready var initpos = self.global_position
 
+var shooter
+
 func _physics_process(delta):
 	translate(dir * vel * delta)
 	if global_position.distance_to(initpos) > 150:

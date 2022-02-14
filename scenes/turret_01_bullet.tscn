@@ -27,15 +27,20 @@ func set_dir(val):
 
 func autodestroy():
 	queue_free()
+
+
+func _on_turret_01_bullet_area_entered(area):
+	if area.has_method(\"hit\"):
+		area.hit(5, self)
+		queue_free()
 "
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0333
 
 [node name="turret_01_bullet" type="Area2D"]
-position = Vector2( 488, 319 )
-collision_layer = 16
-collision_mask = 37
+collision_layer = 32
+collision_mask = 0
 script = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -58,3 +63,5 @@ offset = Vector2( 0, -11 )
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2( 1.52588e-05, 0 )
 shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_turret_01_bullet_area_entered"]

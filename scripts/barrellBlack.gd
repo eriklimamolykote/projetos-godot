@@ -2,11 +2,14 @@ extends StaticBody2D
 
 const PRE_OIL = preload("res://scenes/oilSpill_Large.tscn")
 
+var last_hit_node
+
 func _ready():
 	$area_hit.connect("hitted", self, "on_area_hitted")
 	$area_hit.connect("destroid", self, "on_area_destroid")
 	
 func on_area_hitted(damage, health, node):
+	last_hit_node = node
 	if health > 0:
 		if damage > 5:
 			$big_hit.play()
@@ -30,6 +33,8 @@ func on_area_destroid():
 	$area_hit.queue_free()
 	$shape.queue_free()
 	$anim.play("explode")
-	GAME.add_score(80)
+	if last_hit_node and "shooter" in last_hit_node:
+		if last_hit_node.shooter.get_filename() == "res://scenes/Tank.tscn":
+			GAME.add_score(80)
 	yield($anim, "animation_finished")
 	queue_free()

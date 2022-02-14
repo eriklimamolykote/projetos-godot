@@ -19,4 +19,20 @@ func _process(delta):
 
 
 func _on_home_missile_body_entered(body):
+	destroy()
+
+
+func _on_area_damage_destroid():
+	destroy()
+	#queue_free()
+
+func destroy():
+	$area_damage.queue_free()
+	$sprite.hide()
+	$shape.queue_free()
+	set_process(false)
+	$smoke.emitting = false
+	$fire.emitting = true
+	$explosion.play("boom")
+	yield(get_tree().create_timer(2), "timeout")
 	queue_free()

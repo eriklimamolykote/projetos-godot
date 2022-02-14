@@ -87,6 +87,7 @@ func _physics_process(delta):
 		bullet.dir = Vector2(cos($barrel.global_rotation), sin($barrel.global_rotation) ).normalized()
 		bullet.add_to_group(BULLET_TANK_GROUP)
 		bullet.max_dist = $barrel/sight.position.x - $barrel/muzzle.position.x
+		bullet.shooter = self
 		$"../".add_child(bullet)
 		$barrel/anim.play("fire")
 		loaded = false
@@ -190,9 +191,14 @@ func shoot_mg():
 	mg.global_position = $mg_muzzle.global_position
 	mg.global_rotation = global_rotation
 	mg.dir = Vector2(cos(global_rotation), sin(global_rotation)).normalized()
+	mg.shooter = self
 	get_parent().add_child(mg)
 	emit_signal("hmg_shooted")
 
 
 func _on_timer_mg_timeout():
 	shoot_mg()
+
+
+func _on_damage_area_destroid():
+	queue_free()

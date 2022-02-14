@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sprites/tankSand_barrel1_outline.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Tank.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://samples/disparo_hmg_tank.wav" type="AudioStream" id=10]
 [ext_resource path="res://samples/reload.wav" type="AudioStream" id=11]
 [ext_resource path="res://samples/tank_motor.wav" type="AudioStream" id=12]
+[ext_resource path="res://scripts/destructable.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -144,6 +145,10 @@ func _physics_process(delta):
 	$motor.pitch_scale = pitch + .7
 "
 
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 24.8273
+height = 23.6693
+
 [node name="Tank" type="KinematicBody2D" groups=["player"]]
 rotation = -2.30902
 collision_mask = 22
@@ -223,5 +228,16 @@ bus = "tank"
 stream = ExtResource( 12 )
 bus = "tank"
 
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource( 13 )
+
+[node name="shape" type="CollisionShape2D" parent="damage_area"]
+position = Vector2( 2.82528, -0.13338 )
+rotation = 1.5708
+shape = SubResource( 6 )
+
 [connection signal="timeout" from="timer_mg" to="." method="_on_timer_mg_timeout"]
 [connection signal="timeout" from="timer_reload" to="." method="_on_timer_reload_timeout"]
+[connection signal="destroid" from="damage_area" to="." method="_on_damage_area_destroid"]

@@ -8,6 +8,8 @@ onready var init_pos = global_position
 var damage = 10
 var live = true
 
+var shooter
+
 func _ready():
 	pass
 

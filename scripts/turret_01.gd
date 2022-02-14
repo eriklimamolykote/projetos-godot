@@ -33,7 +33,7 @@ func _process(delta):
 		var angle = cannon.get_angle_to(bodies[0].global_position)
 		if abs(angle) > .01:
 			cannon.rotation += cannon.rot_vel * delta *  sign(angle)
-		if cannon.get_target() != null && cannon.get_target() != bodies[0]: 
+		if cannon.get_target() != null && cannon.get_target != bodies[0].global_position: 
 			var oldBody = bodies[0]
 			var newBodyIndex = bodies.find(cannon.get_target())
 			bodies[0] = cannon.get_target()

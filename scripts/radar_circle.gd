@@ -19,15 +19,15 @@ func _draw():
 	draw_circle(Vector2(), radius, color)
 	
 	if !Engine.editor_hint:
-		if tank:
+		if tank and weakref(tank).get_ref():
 			draw_circle(Vector2(), 3, Color(1,1,0,1))
 			for re in get_tree().get_nodes_in_group("radar_entity"):
 				var angle = (tank.global_position - re.global_position).angle()
 				var distance = (tank.global_position.distance_to(re.global_position))
 				if distance < sensor_radius:
 					draw_circle(Vector2(cos(angle), sin(angle)) * distance * rate * -1, 2, Color(1, 1, 1, 1))
-	else:
-		print("tank not defined")		
+#	else:
+#		print("tank not defined")		
 
 func set_radius(val):
 	radius = val

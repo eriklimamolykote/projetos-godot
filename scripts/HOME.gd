@@ -10,7 +10,7 @@ func get_target():
 	var ht = (tank.global_position - global_position).normalized()
 	var facing = Vector2(cos(rotation), sin(rotation))
 	
-	if ht.dot(facing) > .0:
+	if ht.dot(facing) > .5:
 		if $fire_timer.is_stopped():
 			fire()
 			$fire_timer.start()
@@ -21,8 +21,11 @@ func get_target():
 	
 func fire():
 	if get_parent().bodies.size():
+		$fire.play()
+		$anim.play("fire")
+		$smoke.emitting = true
 		var missile = PRE_MISSILE.instance()
-		get_parent().add_Child(missile)
+		get_parent().add_child(missile)
 		missile.rotation = rotation
 		missile.target = get_parent().bodies[0]
 		missile.global_position = $barrel.global_position
